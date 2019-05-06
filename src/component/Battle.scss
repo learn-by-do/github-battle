@@ -1,0 +1,123 @@
+$blue: rgb(156, 223, 250);
+$red: rgb(250, 63, 110);
+$lightRed: rgb(250, 142, 169);
+
+.Battle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  .User {
+    flex: 0 1 40%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &.winner:before{
+      content: '👑';
+      animation: zoom 1s ease infinite alternate;
+      position: relative;
+      top: 5px;
+    }
+    .Input {
+      $input: &;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      width: 200px;
+      input,
+      .label {
+        font-size: 18px;
+        color: white;
+        position: absolute;
+        left: 0;
+        display: inline-block;
+        height: 30px;
+        box-sizing: border-box;
+      }
+      input {
+        outline: none;
+        border: none;
+        background: transparent;
+        padding: 0 10px 4px 0;
+        border-bottom: 1px solid $lightRed;
+        transition: all 0.2s ease;
+      }
+      .label {
+        top: 0;
+        padding: 0 4px;
+        margin-left: 5px;
+        color: $lightRed;
+        pointer-events: none;
+        line-height: 30px;
+      }
+      input:focus ~ .label,
+      &.active .label {
+        background-color: $red;
+        color: #fff;
+      }
+
+      input:disabled ~ .label {
+        animation: rotate 2s linear infinite;
+      }
+
+      input:focus,
+      &.active input {
+        border-color: $red;
+        padding-left: 80px;
+      }
+    }
+  }
+  .battle-btn,
+  .reset-btn {
+    outline: none;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      opacity: 0.9;
+    }
+  }
+  .battle-btn {
+    color: #fff;
+    background-color: $red;
+    font-size: 18px;
+    padding: 10px;
+  }
+  .reset-btn {
+    font-size: 14px;
+    background-color: transparent;
+    color: $lightRed;
+    border: none;
+  }
+  .UserBoard {
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1px solid $blue;
+      object-fit: cover;
+    }
+    .info {
+      text-align: left;
+      line-height: 1.4;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+
+@keyframes zoom {
+  to {
+    transform: scale(1.5);
+  }
+}
